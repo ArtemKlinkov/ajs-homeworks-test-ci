@@ -1,3 +1,5 @@
+import fetchData from './http';
+
 class Character {
 }
 
@@ -15,4 +17,26 @@ export function lifebarColor(character) {
   return 'healthy';
 }
 
+export function sortCharacters(characters) {
+  return characters.sort((a, b) => {
+    if (a.health < b.health) {
+      return 1;
+    }
+    if (a.health > b.health) {
+      return -1;
+    }
+    return 0;
+  });
+}
+
+export function getLevel(userId) {
+  const response = fetchData(`https://server/user/${userId}`);
+
+  // TODO: логика обработки
+  if (response.status === 'ok') {
+    return `Ваш текущий уровень: ${response.level}`;
+  }
+
+  return 'Информация об уровне временно недоступна';
+}
 export default Character;
