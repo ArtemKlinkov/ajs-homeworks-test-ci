@@ -4,6 +4,10 @@ class Character {
 }
 
 export function lifebarColor(character) {
+  if (!character) {
+    throw new Error('Не передан персонаж!');
+  }
+
   const characterHealth = character.health;
 
   if (characterHealth < 15) {
@@ -18,6 +22,10 @@ export function lifebarColor(character) {
 }
 
 export function sortCharacters(characters) {
+  if (!characters) {
+    throw new Error('Не переданы персонажи для сортировки!');
+  }
+
   return characters.sort((a, b) => {
     if (a.health < b.health) {
       return 1;
